@@ -1,0 +1,106 @@
+<?php
+declare(strict_types=1);
+
+$someProducts = [
+    '000_product_1  ',
+    ' 000_product_2',
+    '000_product_3  ',
+    '000_product_4',
+    '  000_product_5 ',
+    '000_product_20
+    ',
+];
+
+function exercise1(): array
+{
+    /*
+    Išskaidykite $longLine kintamajį į atskirus žodžius. Žodžiai turi grįžti iš funkcijos masyvo formoje.
+    Skaidykite per underscore (_)
+    */
+    $longLine = 'Hello_how_are_you_doing?';
+
+    return explode('_', $longLine);
+}
+echo 'exercise 1', PHP_EOL, PHP_EOL;
+var_dump(exercise1());
+echo PHP_EOL;
+
+
+function exercise2(): array
+{
+    /*
+    Grąžinkite masyvą, kuris talpintų tik tuos žodžius, kurie panašūs į emailų adresus
+    t.y. turi savyje simbolį @
+    */
+    $emails = [
+        'some@email.com',
+        'someAemail.com',
+        'another@gmail.com',
+        'notAreal.email.com',
+        'real@gmail.com',
+    ];
+
+    return array_filter($emails, function(string $str):?string{return str_contains($str, '@')?$str:null;});
+}
+echo 'exercise 2', PHP_EOL, PHP_EOL;
+var_dump(exercise2());
+echo PHP_EOL;
+
+
+function exercise3(array $products): int
+{
+    /*
+    Suskaičiuokite ir grąžinkite visų $products masyve esančių eilučių ilgių sumą.
+    Naudokite $someProducts masyvą
+    */
+    $len = 0;
+    foreach($products as $element=>$value){
+        $len += strlen($value);
+    }
+    return $len;
+}
+echo 'exercise 3', PHP_EOL, PHP_EOL;
+var_dump(exercise3($someProducts));
+echo PHP_EOL;
+
+
+function exercise4(array $products): int
+{
+    /*
+    Suskaičiuokite ir grąžinkite visų $products masyve esančių eilučių ilgių sumą, BET
+    į sumą neįtraukite tuščių simbolių - ty. tarpų, new line ir pan.
+    Naudokite $someProducts masyvą.
+    */
+    $len = 0;
+    foreach($products as $element){
+        $len+=(strlen($element) - substr_count($element,' '));
+    }
+    return $len;
+}
+echo 'exercise 4', PHP_EOL, PHP_EOL;
+var_dump(exercise4($someProducts));
+echo PHP_EOL;
+
+
+function exercise5(): int
+{
+    $text = 'The African philosophy of Ubuntu has its roots in the Nguni word for being human.
+    The concept emphasises the significance of our community and shared humanity and teaches
+    us that "A person is a person through others". Many view the philosphy as a counterweight
+    to the culture of individualism in our contemporary world.';
+
+    /*
+    Suskaičiuokite kiek balsių yra tekste
+    */
+    $vowels = ['a', 'e', 'i', 'u', 'o'];
+    $len = 0;
+    foreach($vowels as $element){
+        echo 'text contains '.substr_count($text, $element).' '.$element. PHP_EOL;
+        $len += substr_count($text, $element);
+    }
+    return $len;
+}
+echo 'exercise 5', PHP_EOL, PHP_EOL;
+var_dump(exercise5());
+echo PHP_EOL;
+
