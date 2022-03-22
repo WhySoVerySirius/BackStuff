@@ -64,12 +64,20 @@ function exercise3(array $words): array
     ]
     */
             $arrayToReturn =[];
-            $vowels =['a', 'e', 'i', 'o', 'u'];
+            $vowels = '/[aeiouy]/';
             foreach($words as $value){
-                
+                $arrayToReturn[$value] = [
+                    'vowels'=>preg_match_all($vowels,$value),
+                    'consonants'=>strlen($value)-preg_match_all($vowels,$value),
+                    'length'=>strlen($value),
+                    'starts_with'=>substr($value,0,1),
+                    'ends_with'=>substr($value,-1,1),
+                ];
             }
-    return [];
+    return $arrayToReturn;
 }
+echo PHP_EOL, 'exercise 3', PHP_EOL;
+var_dump(exercise3(['hello', 'you']));
 
 function exercise4(): array
 {
