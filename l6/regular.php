@@ -56,17 +56,21 @@ function exercise2(): int
     ir grąžinkite ją iš funkcijos
     */
 
-    return 0;
+    return array_sum(array_column(getCities(),'population'));
 }
-
+var_dump(exercise2());
 function exercise3(): int
 {
     /*
     Suskaičiuokite bendrą miestų populiaciją pasinaudodami funkcija array_reduce ir grąžinkite ją iš funkcijos
     */
 
-    return 0;
+    return array_reduce(getCities(), function(?int $count, array $city):int{
+        $count += $city['population'];
+        return $count;
+    });
 }
+var_dump(exercise3());
 
 function exercise4(): int
 {
@@ -75,9 +79,11 @@ function exercise4(): int
     Rinkites sau patogiausią skaičiavimo būdą.
     */
 
-    return 0;
+    return array_sum(array_filter(array_column(getCities(), 'population'), function(int $value):bool{
+        return $value>25000000?true:false;
+    }));
 }
-
+var_dump(exercise4());
 function exercise5(): array
 {
     /*
@@ -92,8 +98,11 @@ function exercise5(): array
     ]
     */
 
-    return [];
+    return array_filter(getCities(), function(array $arr):bool{
+        return $arr['population']>25000000?true:false;
+    });
 }
+var_dump(exercise5());
 
 function exercise6(): int
 {
@@ -135,5 +144,9 @@ function exercise6(): int
     ];
 
 
-    return 0;
+    return array_reduce($orderItems,function(?int $count, array $arr) use ($lowPriceItems):int{
+        in_array($arr['name'],$lowPriceItems)?$count+=$arr['priceLow']*$arr['quantity']:$count+=$arr['priceRegular']*$arr['quantity'];
+        return $count;
+    });
 }
+var_dump(exercise6());
