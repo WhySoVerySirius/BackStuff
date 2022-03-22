@@ -40,7 +40,13 @@ function exercise2(): array
         'real@gmail.com',
     ];
 
-    return array_filter($emails, function(string $str):?string{return str_contains($str, '@')?$str:null;});
+    return array_filter (
+        $emails,
+        function (string $str): ?string { 
+            return str_contains($str, '@')
+            ? $str
+            : null;
+        });
 }
 echo 'exercise 2', PHP_EOL, PHP_EOL;
 var_dump(exercise2());
@@ -53,11 +59,10 @@ function exercise3(array $products): int
     Suskaičiuokite ir grąžinkite visų $products masyve esančių eilučių ilgių sumą.
     Naudokite $someProducts masyvą
     */
-    $len = 0;
-    foreach($products as $element=>$value){
-        $len += strlen($value);
-    }
-    return $len;
+    return array_reduce ($products, function(?int $counter, string $string):int {
+        $counter += strlen($string);
+        return $counter;
+    });
 }
 echo 'exercise 3', PHP_EOL, PHP_EOL;
 var_dump(exercise3($someProducts));
@@ -71,11 +76,12 @@ function exercise4(array $products): int
     į sumą neįtraukite tuščių simbolių - ty. tarpų, new line ir pan.
     Naudokite $someProducts masyvą.
     */
-    $len = 0;
-    foreach($products as $element){
-        $len+=(strlen($element) - substr_count($element,' '));
-    }
-    return $len;
+    return array_reduce (
+        $products,
+        function (?int $counter, string $string):int{
+        $counter += strlen(trim($string));
+        return $counter;
+    });
 }
 echo 'exercise 4', PHP_EOL, PHP_EOL;
 var_dump(exercise4($someProducts));
@@ -93,7 +99,6 @@ function exercise5(): int
     Suskaičiuokite kiek balsių yra tekste
     */
     $vowels = '/[aeiyou]/';
-    
     return preg_match_all($vowels,$text);
 }
 echo 'exercise 5', PHP_EOL, PHP_EOL;

@@ -8,10 +8,13 @@ function exercise1(): int
     */
     $numbers = [1, 15, 25, 13, 45, 551, 2];
 
-    return 0;
+    return array_sum($numbers)**2;
 }
+echo PHP_EOL,'exercise 1', PHP_EOL;
+var_dump(exercise1());
 
-function exercise2(): array
+
+function exercise2(array $arr): array
 {
     /*
     Kiekvieną masyvo narį padauginkite iš 15
@@ -20,10 +23,13 @@ function exercise2(): array
     [15, 225, 375, ...]
     */
 
-    return [];
+    return array_map(function(int $value):int{return $value*15;},$arr);
 }
+echo PHP_EOL,'exercise 2', PHP_EOL;
+var_dump(exercise2([1, 15, 25, 13, 45, 551, 2]));
 
-function exercise3(string $orderDirection): array
+
+function exercise3(array $arr, string $orderDirection):array
 {
     /*
     Išmeskite iš masyvo neigiamus skaičius ir juos išrikiuokite didėjimo arba mažėjimo tvarka
@@ -38,8 +44,12 @@ function exercise3(string $orderDirection): array
     [0, 1, 3, 15]
     */
 
-    return [];
+    $orderDirection==='ascending' ? asort($arr) : arsort($arr);
+    return $arr;
 }
+echo PHP_EOL,'exercise 3', PHP_EOL;
+var_dump(exercise3([1, 15, 25, 13, 45, 551, 2], 'ascending'));
+
 
 function exercise4(): array
 {
@@ -56,9 +66,12 @@ function exercise4(): array
         'warm',
         'friends',
     ];
-
-    return [];
+    $regEx = '/[aeiou]/';
+    return array_map ( function(string $str) use ($regEx) : int { return preg_match_all ( $regEx, $str ) ; }, $words);
 }
+echo PHP_EOL,'exercise 4', PHP_EOL;
+var_dump(exercise4());
+
 
 function exercise5(int $number): int
 {
@@ -70,8 +83,11 @@ function exercise5(int $number): int
     */
     $numbers = [1, 15, 25, 13, 45, 551, 2];
 
-    return 0;
+    return array_sum(array_map(function(int $value)use($number):int{return$value+$number;},$numbers));
 }
+
+echo PHP_EOL,'exercise 5', PHP_EOL;
+var_dump(exercise5(9));
 
 function exercise6(int $number): void
 {
@@ -92,8 +108,24 @@ function exercise6(int $number): void
     -1
     0
     */
-
+    if($number !=0 and $number != 1 and $number > 0) {
+        echo $number.', ';
+        exercise6($number-2);
+    };
+    if ($number !=0 and $number != -1 and $number < 0) {
+        echo $number.', ';
+        exercise6($number+2);
+    };
+    if (abs($number)===1){
+       echo $number>0? '1, 0':'-1, 0';
+    };
+    if($number === 0){
+        echo '0';
+    }
 }
+
+echo PHP_EOL,'exercise 6', PHP_EOL;
+var_dump(exercise6(50));
 
 function exercise7(array $numbers): array
 {

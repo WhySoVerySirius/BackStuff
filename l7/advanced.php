@@ -95,4 +95,5 @@ function exercise4(): array
     $markUps = ['a', 's', 'b', 'o'];
     return array_filter($emails, function(string $value) use ($markUps):bool{return in_array(substr($value,0,1), $markUps) or in_array(substr($value,-1,1),$markUps)?true:false;});
 }
+echo PHP_EOL,'exercise 4', PHP_EOL;
 var_dump(exercise4());
