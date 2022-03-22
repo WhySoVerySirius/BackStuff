@@ -92,13 +92,9 @@ function exercise5(): int
     /*
     Suskaičiuokite kiek balsių yra tekste
     */
-    $vowels = ['a', 'e', 'i', 'u', 'o'];
-    $len = 0;
-    foreach($vowels as $element){
-        echo 'text contains '.substr_count($text, $element).' '.$element. PHP_EOL;
-        $len += substr_count($text, $element);
-    }
-    return $len;
+    $vowels = '/[aeiyou]/';
+    
+    return preg_match_all($vowels,$text);
 }
 echo 'exercise 5', PHP_EOL, PHP_EOL;
 var_dump(exercise5());
