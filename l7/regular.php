@@ -59,9 +59,11 @@ function exercise3(array $products): int
     Suskaičiuokite ir grąžinkite visų $products masyve esančių eilučių ilgių sumą.
     Naudokite $someProducts masyvą
     */
-    return array_reduce ($products, function(?int $counter, string $string):int {
-        $counter += strlen($string);
-        return $counter;
+    return array_reduce (
+        $products, 
+        function(?int $counter, string $string): int {
+            $counter += strlen($string);
+            return $counter;
     });
 }
 echo 'exercise 3', PHP_EOL, PHP_EOL;
@@ -78,9 +80,9 @@ function exercise4(array $products): int
     */
     return array_reduce (
         $products,
-        function (?int $counter, string $string):int{
-        $counter += strlen(trim($string));
-        return $counter;
+        function (?int $counter, string $string): int{
+            $counter += strlen(trim($string));
+            return $counter;
     });
 }
 echo 'exercise 4', PHP_EOL, PHP_EOL;
@@ -104,4 +106,3 @@ function exercise5(): int
 echo 'exercise 5', PHP_EOL, PHP_EOL;
 var_dump(exercise5());
 echo PHP_EOL;
-

@@ -125,7 +125,7 @@ function exercise6(int $number): void
 }
 
 echo PHP_EOL,'exercise 6', PHP_EOL;
-var_dump(exercise6(50));
+exercise6(50);
 
 function exercise7(array $numbers): array
 {
@@ -144,9 +144,39 @@ function exercise7(array $numbers): array
         'skirtumas_max_min' => 39
     ]
     */
-
-    return [];
+    return [
+        'suma'=> array_sum(
+            array_filter(
+                $numbers,
+                function(int $number): bool{
+                    return $number>0
+                    ? true
+                    : false;
+                }
+                )),
+        'sandauga'=> array_reduce(
+            $numbers, 
+            function (?int $count = 1, int $number): int{
+                $count *= $number;
+                return $count;
+            }),
+        'vidurkis'=> number_format(array_sum(
+            array_filter(
+                $numbers,
+                function(int $number): bool{
+                    return $number>0
+                    ? true
+                    : false;
+                }
+                )) / count($numbers),2),
+        'maksimumas' => max($numbers),
+        'minimumas' => min($numbers),
+        'skirtumas_max_min' => max($numbers) - min($numbers),
+    ];
 }
+
+echo PHP_EOL,'exercise 7', PHP_EOL;
+var_dump(exercise7([1, 3, 40]));
 
 function exercise8($height, $width)
 {
