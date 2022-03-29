@@ -141,8 +141,8 @@ class Yeet {
         $this->age=$age;  
     }
 }
-$obj3 = new Yeet('Yeet','Boom',50);
-echo json_encode($obj3);
+// $obj3 = new Yeet('Yeet','Boom',50);
+echo json_encode(new Yeet('Yeet','Boom',50));
 
 
 ?>
