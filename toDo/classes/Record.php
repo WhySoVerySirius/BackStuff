@@ -1,5 +1,10 @@
 <?php
-class Record {
+
+interface WriteToFile {
+    public function writeToFile(string $filename): void;
+}
+
+class Record implements WriteToFile {
     public string $todo;
     public string $date;
     public string $time;

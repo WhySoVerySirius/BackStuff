@@ -18,8 +18,8 @@
     </div>
     <?php
     isset ($_SERVER['REQUEST_URI']) && !empty(ltrim($_SERVER['REQUEST_URI'],'/'))
-        ?include_once './HTML_components/' . ltrim($_SERVER['REQUEST_URI'], '/').'.php'
-        : null;
+        ? include './HTML_components/' . ltrim($_SERVER['REQUEST_URI'], '/').'.php'
+        : var_dump($_SERVER['REQUEST_URI']);
     ?>
 </body>
 </html>
