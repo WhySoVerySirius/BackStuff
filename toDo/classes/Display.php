@@ -1,14 +1,14 @@
 <?php
 class Display {
 
-    private function decode (string $fileName) : array
+    private static function decode (string $fileName) : array
     {
         return json_decode ( file_get_contents($fileName) );
     }
 
-    public static function display (string $fileName)
+    public static function display (string $fileName) : void
     {
-        return array_map ( function (object $obj): void {
+        array_map ( function (object $obj): void {
             echo '<form method="POST" action="./delete.php">
                         <fieldset>
                             <legend>'. $obj->todo . '</legend>
@@ -19,5 +19,4 @@ class Display {
                   </form>';
         }, Display::decode ($fileName) );
     }
-
 }
