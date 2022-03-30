@@ -6,7 +6,7 @@ class Display {
         return json_decode ( file_get_contents($fileName) );
     }
 
-    public static function display () use (decode) : string
+    public static function display (string $fileName)
     {
         return array_map ( function (object $obj): void {
             echo '<form method="POST" action="./delete.php">
@@ -17,7 +17,7 @@ class Display {
                   <input type="submit" value="delete">
                   </fieldset>
                   </form>';
-        }, decode());
+        }, Display::decode ($fileName) );
     }
 
 }
