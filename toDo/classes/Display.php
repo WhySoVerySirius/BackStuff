@@ -1,11 +1,6 @@
 <?php
 class Display {
 
-    private static function decode (string $fileName) : array
-    {
-        return json_decode ( file_get_contents($fileName) );
-    }
-
     public static function display (string $fileName) : void
     {
         array_map ( function (object $obj): void {
@@ -17,6 +12,6 @@ class Display {
                   <input type="submit" value="delete">
                   </fieldset>
                   </form>';
-        }, Display::decode ($fileName) );
+        }, json_decode ( file_get_contents($fileName) ) );
     }
 }
