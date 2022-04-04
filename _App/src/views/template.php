@@ -8,6 +8,7 @@
     include 'src/views/components/head.php';
     ?>
     <link rel="stylesheet" href="<?php echo $this->pathToCss ?>">
+    <script src="<?php echo $this->pathToJs ?>"></script>
 </head>
 <body>
     <?php
