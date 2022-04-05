@@ -8,5 +8,5 @@
     require './src/Controllers/AboutController.php';
     require './src/Controllers/LoginController.php';
     // Application::pageIndex();
-    $app = new Application();
+    new Application();
     ?>

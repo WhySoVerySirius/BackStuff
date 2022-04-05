@@ -3,7 +3,7 @@ abstract Class Controller {
 
     public View $view;
 
-    public function __construct($controllerIndex)
+    public function __construct(string $controllerIndex)
     {
         $pathToView = 'src/views/' . $controllerIndex . '/index.php';
         $pathToCss = 'src/views/' . $controllerIndex . '/style.css';

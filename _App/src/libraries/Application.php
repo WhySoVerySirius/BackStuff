@@ -30,9 +30,9 @@ Class Application {
         $URL = isset($_SERVER['REQUEST_URI']) && ($_SERVER['REQUEST_URI'] != '/')
         ? explode('/', ltrim($_SERVER['REQUEST_URI'], '/'))
         : ['home'];
-
-        if ($URL === 'home') {
-            header('location: /');
+        
+        if ($_SERVER['REQUEST_URI'] === '/home') {
+            header('Location: /');
         }
 
         $controllerIndex = $URL[0];
